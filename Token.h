@@ -10,9 +10,15 @@
 class Token {
 
 public:
-    explicit Token(TokenType type, const std::optional<std::string>& value = {}) {
+    explicit Token(const TokenType type, std::optional<std::string>& value) : type_(type), value_(value) {}
 
-    };
+    const TokenType& getType();
+
+    const std::optional<std::string>& getValue();
+
+private:
+    TokenType type_;
+    const std::optional<std::string>& value_;
 
 };
 

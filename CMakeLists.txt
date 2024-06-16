@@ -10,4 +10,5 @@ add_executable(HXLang main.cc
         StringVector.cpp
         TokenType.h
         Token.h
-        Token.cpp)
+        Token.cpp
+        Tokenize.h)

@@ -13,13 +13,23 @@ const char &StringVector::peek(const int seek) {
     return str.at(index + seek);
 }
 
-char StringVector::consume() {
-    return str.at(index++);
+void StringVector::consume(std::string& target) {
+    target.push_back(str.at(index++));
 }
 
 char StringVector::charAt(const int index) {
     return str.at(index);
 }
+
+std::string &StringVector::getString() {
+    return str;
+}
+
+const std::optional<char> &StringVector::at() {
+    return str.at(index);
+}
+
+
 
 
 
