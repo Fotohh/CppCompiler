@@ -6,7 +6,6 @@
 #include "StringVector.h"
 #include "Token.h"
 
-
 inline std::vector<std::string> bufferFile(std::string& input) {
     StringVector vec(input);
     std::vector<std::string> buff_list = {};
@@ -19,11 +18,11 @@ inline std::vector<std::string> bufferFile(std::string& input) {
             }
             buff_list.push_back(buffer);
             buffer.clear();
+        }else if(std::isdigit(vec.at().value())) {
+            
         }
     }
     return buff_list;
 }
-
-
 
 #endif //TOKENIZE_H
