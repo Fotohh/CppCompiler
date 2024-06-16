@@ -8,4 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(HXLang main.cc
         StringVector.h
         StringVector.cpp
-        TokenType.cpp)
+        TokenType.h
+        Token.h
+        Token.cpp)
