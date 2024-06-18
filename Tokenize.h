@@ -1,6 +1,7 @@
 
 #ifndef TOKENIZE_H
 #define TOKENIZE_H
+#include <functional>
 #include <vector>
 #include <optional>
 
@@ -11,17 +12,16 @@ inline Token tokenSearch(const std::string& buf) {
     if (buf == "quit") {
         return Token(TokenType::QUIT, buf);
     }
-    else if (buf == "(") {
+    if (buf == "(") {
         return Token(TokenType::O_P, buf);
     }
-    else if (buf == ")") {
+    if (buf == ")") {
         return Token(TokenType::C_P, buf);
     }
-    else if (buf == ";") {
+    if (buf == ";") {
         return Token(TokenType::S_C, buf);
-    } else {
-        throw _invalid_parameter;
     }
+    throw ERROR_SEVERITY_ERROR;
 }
 
 inline std::vector<Token> bufferFile(const std::string& input) {
@@ -41,11 +41,33 @@ inline std::vector<Token> bufferFile(const std::string& input) {
             while (vec.at().has_value() && std::isdigit(vec.at().value())) {
                 vec.consume(buffer);
             }
-            buff_list.push_back(Token(TokenType::INT, std::stoi(buffer)));
+            buff_list.emplace_back(TokenType::INT, buffer);
             buffer.clear();
         }
     }
     return buff_list;
+}
+
+inline void readTokens(std::vector<Token>& tokens) {
+    for(int i = 0; i < tokens.size(); i++) {
+        if(tokens.at(i).getType() == TokenType::QUIT) {
+            i++;
+            int val = 0;
+            if(tokens.at(i).getType() == TokenType::O_P) {
+                i++;
+                if(tokens.at(i).getType() == TokenType::INT) {
+                    val = std::stoi(tokens.at(i).getValue().value());
+                    i++;
+                    if(tokens.at(i).getType() == TokenType::C_P) {
+                        i++;
+                        if(tokens.at(i).getType() == TokenType::S_C) {
+                            exit(val);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
