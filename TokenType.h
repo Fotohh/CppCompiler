@@ -2,7 +2,7 @@
 #ifndef TOKENTYPE_H
 #define TOKEN_H
 
-enum class TokenType {
+enum TokenType {
     QUIT,
     O_P,
     C_P,

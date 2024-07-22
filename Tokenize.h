@@ -21,7 +21,6 @@ inline Token tokenSearch(const std::string& buf) {
     if (buf == ";") {
         return Token(TokenType::S_C, buf);
     }
-    throw ERROR_SEVERITY_ERROR;
 }
 
 inline std::vector<Token> bufferFile(const std::string& input) {

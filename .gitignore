@@ -34,3 +34,17 @@
 cmake-build-debug/
 out/
 .vs/
+.vscode/c_cpp_properties.json
+
+# VCPROJ files
+
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+
+# Cmake files
+CMakeFiles/
+CMakeCache.txt
+CMakeSettings.json
+*.cmake

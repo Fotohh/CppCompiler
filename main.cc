@@ -25,6 +25,7 @@ int main() {
     std::cout << "Hello World" << std::endl;
 
     std::vector<Token> vec = TOKENIZE_H::bufferFile(file_contents);
+
     for (Token tok : vec) {
         std::cout << tok.getType() << std::endl;
         std::cout << tok.getValue().value() << std::endl;

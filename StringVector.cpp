@@ -25,7 +25,7 @@ std::string &StringVector::getString() {
     return str;
 }
 
-const std::optional<char> &StringVector::at() {
+const std::optional<char> StringVector::at() {
     return str.at(index);
 }
 

@@ -23,7 +23,7 @@ public:
 
     char charAt(int index);
 
-    const std::optional<char>& at();
+    const std::optional<char> at();
 
     std::string& getString();
 
