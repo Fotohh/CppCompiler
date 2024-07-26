@@ -6,7 +6,7 @@ enum TokenType {
     QUIT,
     O_P,
     C_P,
-    INT,
+    INT_LIT,
     S_C
 };
 

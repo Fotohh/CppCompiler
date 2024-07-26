@@ -11,10 +11,6 @@ class StringVector {
 public:
     explicit StringVector(std::string str = "") : str(std::move(str)) {}
 
-    ~StringVector() {
-        std::free(&str);
-    }
-
     std::vector<char32_t> toVector();
 
     const char& peek(int seek = 0);

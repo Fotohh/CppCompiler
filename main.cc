@@ -1,13 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <fileapi.h>
+#include <bits/fs_fwd.h>
+#include <bits/fs_path.h>
 
 #include "Tokenize.h"
 
 
 int main() {
 
-    std::ifstream stream("./test.xh");
+    const auto path = std::filesystem::path(R"(C:\Users\zinha\OneDrive\Documents\GitHub\CppCompiler\test.xh)");
+
+    std::ifstream stream(path);
+
+    stream.open(path);
 
     if (!stream.is_open()) {
         std::cerr << "Error opening file!" << std::endl;

@@ -4,22 +4,19 @@
 
 #include <optional>
 #include <string>
-#include <any>
-
-#include "TokenType.h"
 
 class Token {
 
 public:
 
-    explicit Token(const TokenType type, const std::string& value) : type_(type), value_(value) {}
+    explicit Token(const int type, const std::string& value) : type_(type), value_(value) {}
 
-    const TokenType& getType();
+    int getType();
 
     const std::optional<std::string>& getValue();
 
 private:
-    TokenType type_;
+    int type_;
     const std::optional<std::string>& value_;
 
 };

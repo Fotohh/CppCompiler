@@ -1,7 +1,7 @@
 
 #include "Token.h"
 
-const TokenType &Token::getType() {
+int Token::getType() {
    return type_;
 }
 

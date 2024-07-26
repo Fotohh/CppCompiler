@@ -1,25 +1,25 @@
 
 #ifndef TOKENIZE_H
 #define TOKENIZE_H
-#include <functional>
 #include <vector>
 #include <optional>
 
 #include "StringVector.h"
 #include "Token.h"
+#include "TokenType.h"
 
 inline Token tokenSearch(const std::string& buf) {
     if (buf == "quit") {
-        return Token(TokenType::QUIT, buf);
+        return Token(QUIT, buf);
     }
     if (buf == "(") {
-        return Token(TokenType::O_P, buf);
+        return Token(O_P, buf);
     }
     if (buf == ")") {
-        return Token(TokenType::C_P, buf);
+        return Token(C_P, buf);
     }
     if (buf == ";") {
-        return Token(TokenType::S_C, buf);
+        return Token(S_C, buf);
     }
 }
 
@@ -40,7 +40,7 @@ inline std::vector<Token> bufferFile(const std::string& input) {
             while (vec.at().has_value() && std::isdigit(vec.at().value())) {
                 vec.consume(buffer);
             }
-            buff_list.emplace_back(TokenType::INT, buffer);
+            buff_list.emplace_back(INT_LIT, buffer);
             buffer.clear();
         }
     }
@@ -49,17 +49,16 @@ inline std::vector<Token> bufferFile(const std::string& input) {
 
 inline void readTokens(std::vector<Token>& tokens) {
     for(int i = 0; i < tokens.size(); i++) {
-        if(tokens.at(i).getType() == TokenType::QUIT) {
+        if(tokens.at(i).getType() == QUIT) {
             i++;
-            int val = 0;
-            if(tokens.at(i).getType() == TokenType::O_P) {
+            if(tokens.at(i).getType() == O_P) {
                 i++;
-                if(tokens.at(i).getType() == TokenType::INT) {
-                    val = std::stoi(tokens.at(i).getValue().value());
+                if(tokens.at(i).getType() == INT_LIT) {
+                    int val = std::stoi(tokens.at(i).getValue().value());
                     i++;
-                    if(tokens.at(i).getType() == TokenType::C_P) {
+                    if(tokens.at(i).getType() == C_P) {
                         i++;
-                        if(tokens.at(i).getType() == TokenType::S_C) {
+                        if(tokens.at(i).getType() == S_C) {
                             exit(val);
                         }
                     }
